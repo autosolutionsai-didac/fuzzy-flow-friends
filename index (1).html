@@ -221,6 +221,239 @@
             animation: rotate-slow 120s linear infinite;
         }
         
+        /* Chatbot Styles */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 100px;
+            cursor: pointer;
+            z-index: 999;
+            transition: transform 0.3s ease;
+        }
+        
+        .chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        
+        .chat-bubble-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            overflow: hidden;
+        }
+        
+        .chat-bubble-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .chat-bubble-text {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+        
+        .chat-interface {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 380px;
+            height: 600px;
+            background: var(--color-card-bg);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .chat-header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            overflow: hidden;
+        }
+        
+        .chat-header-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .chat-header-name {
+            color: black;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .chat-header-status {
+            color: rgba(0, 0, 0, 0.7);
+            font-size: 12px;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: black;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .chat-close:hover {
+            opacity: 0.7;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .chat-message {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+        
+        .chat-message.bot {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            align-self: flex-start;
+        }
+        
+        .chat-message.user {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            align-self: flex-end;
+        }
+        
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 12px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+        
+        .chat-send {
+            background: var(--color-primary);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-send:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        
+        .chat-send svg {
+            width: 20px;
+            height: 20px;
+            color: black;
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            padding: 12px 16px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 18px;
+        }
+        
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .chat-interface {
+                width: calc(100vw - 40px);
+                height: calc(100vh - 100px);
+                right: 20px;
+                bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -1467,6 +1700,90 @@
             // Implementation for mobile menu
         }
         
+        // Chat Interface Toggle
+        let chatInterface = null;
+        let simliSession = null;
+        
+        async function toggleChat() {
+            if (!chatInterface) {
+                chatInterface = document.getElementById('chatInterface');
+            }
+            
+            if (chatInterface.style.display === 'none' || chatInterface.style.display === '') {
+                // Show chat interface
+                chatInterface.style.display = 'flex';
+                
+                // Initialize Simli AI session if not already done
+                if (!simliSession) {
+                    try {
+                        const response = await fetch("https://api.simli.ai/session/48ba2ad4-cec8-4b4b-b0ec-59d10525ae87/gAAAAABoZLmBmr8oTaW1juzFnxgFNJjojWYA9niMFz0gs6Q_-sLvb6i9uSE0F0Ob9GPJyhOhMclax_Xn5aXL8q_ZMp9HcF1LzvuC2c8kGBMaIntnpSWy2hF1C3NovsOj1nfOhsvFll1NW1P7ys9rVFdU3zM6sMwufYua9E5f2hmFiZpNTpoS2xxTm-oIldi5nwLNSR7seF7bVua7KSr8msybuC1CjOC2D_A9jaHlMTIO0k7eT4ubDCG12eM1R-XYJmVfJXcYtHX12y-4t2pYBW_M3Y3DB1rJhLOoMMxpDgzg66qJyO6YIJXfenOK5Or3THTMy_iJbC3rC43228r2QYSOOLYzrKkKKO2y1WVP9mbE_0ZqUCRstXPXkUbWWRNzYI1BiBqWM0QGrIoutS4ImzwdSqUV56eFaw==", {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json",
+                            },
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            simliSession = data;
+                            console.log('Simli AI session initialized:', data.roomUrl);
+                        }
+                    } catch (error) {
+                        console.error('Failed to initialize Simli AI:', error);
+                    }
+                }
+                
+                // Focus on input
+                setTimeout(() => {
+                    document.getElementById('chatInput').focus();
+                }, 100);
+            } else {
+                // Hide chat interface
+                chatInterface.style.display = 'none';
+            }
+        }
+        
+        // Handle Enter key press in chat input
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        
+        // Send chat message
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const typingIndicator = document.getElementById('typingIndicator');
+            
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message to chat
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'chat-message user';
+            userMessageDiv.textContent = message;
+            chatMessages.appendChild(userMessageDiv);
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // Show typing indicator
+            typingIndicator.style.display = 'flex';
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate AI response (replace with actual Simli AI integration)
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'chat-message bot';
+                
+                // Simple responses based on keywords
                 let response = "I'd be happy to help you with that! ";
                 
                 if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
@@ -2087,10 +2404,165 @@
         setInterval(updateActivityFeed, 2000);
     </script>
     
+    <!-- Chatbot Bubble -->
+    <div class="chat-bubble" onclick="toggleChat()">
+        <div class="chat-bubble-avatar">
+            <img src="Web Images/Daniel.png" alt="Daniel" onerror="this.style.display='none'">
+        </div>
+        <div class="chat-bubble-text">Talk to Daniel!</div>
+    </div>
     
+    <!-- Chat Interface -->
+    <div class="chat-interface" id="chatInterface">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-header-avatar">
+                    <img src="Web Images/Daniel.png" alt="Daniel" onerror="this.style.display='none'">
+                </div>
+                <div>
+                    <div class="chat-header-name">Daniel</div>
+                    <div class="chat-header-status">AI Assistant • Online</div>
+                </div>
+            </div>
+            <button class="chat-close" onclick="toggleChat()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                Hi! I'm Daniel, your AI assistant. How can I help you learn more about My Virtual Employee today?
+            </div>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="chat-input-container">
+            <input 
+                type="text" 
+                class="chat-input" 
+                id="chatInput" 
+                placeholder="Type your message..."
+                onkeypress="handleKeyPress(event)"
+            >
+            <button class="chat-send" onclick="sendMessage()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Chatbot functionality
+        let chatOpen = false;
+        const webhookUrl = ''; // To be replaced with n8n webhook URL
+        
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            const chatInterface = document.getElementById('chatInterface');
+            chatInterface.style.display = chatOpen ? 'flex' : 'none';
+            
+            if (chatOpen) {
+                document.getElementById('chatInput').focus();
+            }
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function showTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            const chatMessages = document.getElementById('chatMessages');
+            typingIndicator.style.display = 'block';
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'none';
+        }
+        
+        function addMessage(message, isUser = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${isUser ? 'user' : 'bot'}`;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            input.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            try {
+                if (webhookUrl) {
+                    // Send to webhook when URL is provided
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: message,
+                            timestamp: new Date().toISOString(),
+                            sessionId: generateSessionId()
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    hideTypingIndicator();
+                    addMessage(data.response || "I'm having trouble connecting. Please try again later.");
+                } else {
+                    // Default responses when webhook is not configured
+                    setTimeout(() => {
+                        hideTypingIndicator();
+                        const responses = [
+                            "That's a great question! Our AI employees can help transform your business operations. Would you like to know more about a specific agent?",
+                            "I'd be happy to explain how our virtual employees can save your company time and money. Which aspect interests you most?",
+                            "Our AI agents are designed to work 24/7 with zero downtime. They can handle tasks that would normally require multiple full-time employees.",
+                            "Each of our agents is specialized for different business functions. Would you like to hear about James (Sales), Tiffany (Support), Michael (Admin), Alex (Sales Dev), or Lisa (Scheduling)?",
+                            "To get started, we offer a free consultation to understand your needs and show you exactly how our AI employees can help your specific business."
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse);
+                    }, 1500);
+                }
+            } catch (error) {
+                hideTypingIndicator();
+                addMessage("I'm having trouble connecting. Please try again later or contact us directly.");
+            }
+        }
+        
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+    </script>
     
     <!-- Simli Widget -->
-    <simli-widget token="gAAAAABoZL41JB-_dsjRpiMGIYX5XL2vt80duFIN_AChbdC_o7fygY0B-biFB9cV2hSGDVL1OGOssmUHCJAi30oGwMX_SV5i1ofgt7Dry7_FBWmgaiIqa6wNtXVxYKyuh8WwI2OQkvAVjzzqnXt78ueqLiev2pEFEmPhHCTly5zx9GzEqAI4bUMyQWo1XSG7k-k82qhwFsUfdQSEHbyEO2-mPJUiW1ZFWCw7jmxM13VeDgYhrY1CMZj40xMHVI4IWhH6q82985gkMH_JFKxx9JGZ-Ph6sh5-yaWorI_u250l7YbEAFESMltDx1iVfCwvlGJHSeGE4e3cCMksNf22VkDem6mqEqgqXXDS467Chr2t-gcyWsQY2D3xVHWP5kCFE9oAbXcDOJw5aeDafYKfxPGxr0hM1ely-A==" agentid="48ba2ad4-cec8-4b4b-b0ec-59d10525ae87" position="right" customimage="https://i.postimg.cc/RZtdfdSF/Chat-GPT-Image-Jul-1-2025-10-55-54-PM.png" customtext="Call assistant"></simli-widget>
+    <simli-widget token="gAAAAABoZLmBmr8oTaW1juzFnxgFNJjojWYA9niMFz0gs6Q_-sLvb6i9uSE0F0Ob9GPJyhOhMclax_Xn5aXL8q_ZMp9HcF1LzvuC2c8kGBMaIntnpSWy2hF1C3NovsOj1nfOhsvFll1NW1P7ys9rVFdU3zM6sMwufYua9E5f2hmFiZpNTpoS2xxTm-oIldi5nwLNSR7seF7bVua7KSr8msybuC1CjOC2D_A9jaHlMTIO0k7eT4ubDCG12eM1R-XYJmVfJXcYtHX12y-4t2pYBW_M3Y3DB1rJhLOoMMxpDgzg66qJyO6YIJXfenOK5Or3THTMy_iJbC3rC43228r2QYSOOLYzrKkKKO2y1WVP9mbE_0ZqUCRstXPXkUbWWRNzYI1BiBqWM0QGrIoutS4ImzwdSqUV56eFaw==" agentid="48ba2ad4-cec8-4b4b-b0ec-59d10525ae87" position="left" customimage="" customtext="Talk to Daniel" ></simli-widget>
     <script src="https://app.simli.com/simli-widget/index.js" async type="text/javascript"></script>
 </body>
 </html>
